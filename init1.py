@@ -6,6 +6,7 @@ import pymysql.cursors
 
 #Initialize the app from Flask
 app = Flask(__name__)
+#testchange 1
 
 #Configure MySQL
 conn = pymysql.connect(host='192.168.64.2',
@@ -35,6 +36,7 @@ def test():
     cursor.execute(query)
     data = cursor.fetchone()
     cursor.close()
+
     return render_template('testpage1.html', test1=data[0])
 
 #Authenticates the login
