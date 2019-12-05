@@ -1,7 +1,34 @@
 <html>
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-<h1>{{test1}}</h1>
+
+<div class="container">
+  <h2>Dropdowns</h2>
+  <p>The .dropdown class is used to indicate a dropdown menu.</p>
+  <p>Use the .dropdown-menu class to actually build the dropdown menu.</p>
+  <p>To open the dropdown menu, use a button or a link with a class of .dropdown-toggle and data-toggle="dropdown".</p>
+  <div class="dropdown">
+    <html>
+      <body>
+        <select>
+          {% for arrival_airport in arrival_airport %}
+          <option value="{{arrival_airport}}" SELECTED>{{arrival_airport}}</option>"
+          {% endfor %}
+        </select>
+        <select>
+          {% for departure_airport in departure_airport %}
+          <option value="{{departure_airport}}" SELECTED>{{departure_airport}}</option>"
+          {% endfor %}
+        </select>
+      </body>
+    </html>
+  </div>
+</div>
+
 </body>
 </html>

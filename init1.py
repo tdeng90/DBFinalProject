@@ -19,6 +19,17 @@ conn = pymysql.connect(host='192.168.64.2',
 def hello():
 	return render_template('index.html')
 
+#Routing to retrieve dropdown options when searching for flight information
+@app.route('/getarrivalairport')
+def getarrivalairport():
+    cursor = conn.cursor()
+    query = "SELECT arrival_airport FROM flight"
+    cursor.execute(query)
+    data = cursor.fetchone()
+    cursor.close()
+
+    return render_template('testpage1.html', test1=data[0])
+
 #Define route for login
 @app.route('/login')
 def login():
@@ -32,12 +43,22 @@ def register():
 @app.route('/testpage1')
 def test():
     cursor = conn.cursor()
-    query = "SELECT airline_name FROM airline"
+    query = "SELECT arrival_airport FROM flight"
     cursor.execute(query)
-    data = cursor.fetchone()
+    data = cursor.fetchall()
     cursor.close()
+    arrival_airportdata = list(data)
+    
+    cursor = conn.cursor()
+    query = "SELECT departure_airport FROM flight"
+    cursor.execute(query)
+    data = cursor.fetchall()
+    cursor.close()
+    departure_airportdata = list(data)
 
-    return render_template('testpage1.html', test1=data[0])
+    
+
+    return render_template('testpage1.html', arrival_airport=arrival_airportdata, departure_airport=departure_airportdata)
 
 #Authenticates the login
 @app.route('/loginAuth', methods=['GET', 'POST'])
